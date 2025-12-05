@@ -23,7 +23,7 @@ You are not expected to add new features, only to improve the internal design wh
 📁 What’s Included 
 
     main.py: A single-file implementation that works but contains common anti-patterns (e.g., global state, tight coupling, lack of separation of concerns).
-    This README.md: Instructions and context.
+    README.md: Instructions and context.
  
 ✅ What We’re Looking For 
 
