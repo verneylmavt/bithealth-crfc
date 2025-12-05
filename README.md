@@ -30,13 +30,13 @@ bithealth-crfc
 ## ⚖️ Design Decisions
 
 The core goal of the refactor was to reorganize the system around clear software-engineering principles:
-- Encapsulation: Each concept (embeddings, storage, RAG workflow, API) lives in its own class/module.
-- Separation of Concerns:
+- **Encapsulation**: Each concept (embeddings, storage, RAG workflow, API) lives in its own class/module.
+- **Separation of Concerns**:
    - The HTTP layer does no computation.
    - The RAG layer knows nothing about FastAPI.
    - The storage layer is completely swappable.
-- Explicit Dependencies: A single application factory creates all components and wires them together. This eliminates hidden global state and makes control flow predictable.
-- Modularity: Code is structured so future extensions (new storage backends, real embedding models, additional LangGraph steps) require minimal modification.
+- **Explicit Dependencies**: A single application factory creates all components and wires them together. This eliminates hidden global state and makes control flow predictable.
+- **Modularity**: Code is structured so future extensions (new storage backends, real embedding models, additional LangGraph steps) require minimal modification.
 
 ## ❓ Trade-Off
 
@@ -64,7 +64,7 @@ Overall, this redesign transforms a functional prototype into a maintainable fou
 ## 🔌 API
 
 1. Document
-   - `POST /add`: to add a new document to the knowledge base.
+   `POST /add`: to add a new document to the knowledge base.
      ```bash
       curl -X POST "http://localhost:8000/add" \
       -H "Content-Type: application/json" \
@@ -72,7 +72,7 @@ Overall, this redesign transforms a functional prototype into a maintainable fou
      ```
 
 2. Query
-   - `POST /ask`: to run a full retrieval-augmented generation query.
+   `POST /ask`: to run a full retrieval-augmented generation query.
      ```bash
       curl -X POST "http://127.0.0.1:8000/ask" \
       -H "Content-Type: application/json" \
@@ -80,7 +80,7 @@ Overall, this redesign transforms a functional prototype into a maintainable fou
      ```
 
 3. Status
-   - `GET /status`: to check status of Qdrant, in-memory document, and LangGraph workflow.
+   `GET /status`: to check status of Qdrant, in-memory document, and LangGraph workflow.
      ```bash
       curl "http://127.0.0.1:8000/status"
      ```
