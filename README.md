@@ -63,7 +63,7 @@ Overall, this redesign transforms a functional prototype into a maintainable fou
 
 ## 🔌 API
 
-1. Document
+1. Document  
    `POST /add`: to add a new document to the knowledge base.
      ```bash
       curl -X POST "http://localhost:8000/add" \
@@ -71,7 +71,7 @@ Overall, this redesign transforms a functional prototype into a maintainable fou
       -d '{"text": "{text}"}'
      ```
 
-2. Query
+2. Query  
    `POST /ask`: to run a full retrieval-augmented generation query.
      ```bash
       curl -X POST "http://127.0.0.1:8000/ask" \
@@ -79,7 +79,7 @@ Overall, this redesign transforms a functional prototype into a maintainable fou
       -d '{"question": "{question}"}'
      ```
 
-3. Status
+3. Status  
    `GET /status`: to check status of Qdrant, in-memory document, and LangGraph workflow.
      ```bash
       curl "http://127.0.0.1:8000/status"
