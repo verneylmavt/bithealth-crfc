@@ -108,8 +108,8 @@ Overall, this redesign transforms a functional prototype into a maintainable fou
 2. Create environment and install dependencies:
 
    ```bash
-   conda create -n bithealth python=3.10 -y
-   conda activate bithealth
+   conda create -n bithealth-crfc python=3.10 -y
+   conda activate bithealth-crfc
 
    pip install -r requirements.txt
    ```
