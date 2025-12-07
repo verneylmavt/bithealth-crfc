@@ -30,19 +30,21 @@ bithealth-crfc
 ## ⚖️ Design Decisions
 
 The core goal of the refactor was to reorganize the system around clear software-engineering principles:
+
 - **Encapsulation**: Each concept (embeddings, storage, RAG workflow, API) lives in its own class/module.
 - **Separation of Concerns**:
-   - The HTTP layer does no computation.
-   - The RAG layer knows nothing about FastAPI.
-   - The storage layer is completely swappable.
+  - The HTTP layer does no computation.
+  - The RAG layer knows nothing about FastAPI.
+  - The storage layer is completely swappable.
 - **Explicit Dependencies**: A single application factory creates all components and wires them together. This eliminates hidden global state and makes control flow predictable.
 - **Modularity**: Code is structured so future extensions (new storage backends, real embedding models, additional LangGraph steps) require minimal modification.
 
 ## ❓ Trade-Off
 
-A potential simplification was to remove LangGraph entirely and rewrite the retrieval → answer process as a simple, sequential function. The existing workflow is linear and does not strictly require a graph framework. 
+A potential simplification was to remove LangGraph entirely and rewrite the retrieval → answer process as a simple, sequential function. The existing workflow is linear and does not strictly require a graph framework.
 
 However, keeping LangGraph has advantages:
+
 - It honours the original system design.
 - It preserves compatibility with more complex workflows.
 - It demonstrates the ability to encapsulate external frameworks inside clean architectural boundaries.
@@ -63,27 +65,29 @@ Overall, this redesign transforms a functional prototype into a maintainable fou
 
 ## 🔌 API
 
-1. Document  
+1. **Document**  
    `POST /add`: to add a new document to the knowledge base.
-     ```bash
-      curl -X POST "http://localhost:8000/add" \
-      -H "Content-Type: application/json" \
-      -d '{"text": "{text}"}'
-     ```
 
-2. Query  
+   ```bash
+    curl -X POST "http://localhost:8000/add" \
+    -H "Content-Type: application/json" \
+    -d '{"text": "{text}"}'
+   ```
+
+2. **Query**  
    `POST /ask`: to run a full retrieval-augmented generation query.
-     ```bash
-      curl -X POST "http://127.0.0.1:8000/ask" \
-      -H "Content-Type: application/json" \
-      -d '{"question": "{question}"}'
-     ```
 
-3. Status  
+   ```bash
+    curl -X POST "http://127.0.0.1:8000/ask" \
+    -H "Content-Type: application/json" \
+    -d '{"question": "{question}"}'
+   ```
+
+3. **Status**  
    `GET /status`: to check status of Qdrant, in-memory document, and LangGraph workflow.
-     ```bash
-      curl "http://127.0.0.1:8000/status"
-     ```
+   ```bash
+    curl "http://127.0.0.1:8000/status"
+   ```
 
 ## ⚙️ Local Setup
 
@@ -115,13 +119,14 @@ Overall, this redesign transforms a functional prototype into a maintainable fou
    ```bash
    docker run -p 6333:6333 -d qdrant/qdrant
    ```
+
 4. Run the server:
 
    ```bash
    uvicorn app.main:app --reload
    ```
 
-6. Open the dashboard:
+5. Open the dashboard:
    ```bash
    start "http://127.0.0.1:8000/dashboard"
    ```
