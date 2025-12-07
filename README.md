@@ -126,7 +126,7 @@ Overall, this redesign transforms a functional prototype into a maintainable fou
    uvicorn app.main:app --reload
    ```
 
-5. Open the API documentation:
+5. Open the API documentation to make an API call and interact with the app:
    ```bash
    start "http://127.0.0.1:8000/docs"
    ```
