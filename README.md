@@ -126,7 +126,7 @@ Overall, this redesign transforms a functional prototype into a maintainable fou
    uvicorn app.main:app --reload
    ```
 
-5. Open the dashboard:
+5. Open the API documentation:
    ```bash
-   start "http://127.0.0.1:8000/dashboard"
+   start "http://127.0.0.1:8000/docs"
    ```
