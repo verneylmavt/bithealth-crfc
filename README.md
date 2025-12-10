@@ -94,6 +94,7 @@ Overall, this redesign transforms a functional prototype into a maintainable fou
 0. Make sure to have the prerequisites:
 
    - Git
+   - Git Large File Storage
    - Python
    - Conda or venv
    - Docker
